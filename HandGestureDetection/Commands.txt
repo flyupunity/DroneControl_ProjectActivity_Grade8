@@ -1,0 +1,13 @@
+
+cmd:
+python -m venv venv                              # create venv
+.\venv\Scripts\activate				 # activate venv
+deactivate					 # deactivate venv
+
+
+python.exe -m pip install --upgrade pip	         # update PIP
+py -3.12 -m pip install mediapipe		 #pip install mediapipe               # install mediapipe
+
+
+ 
+
