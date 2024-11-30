@@ -49,42 +49,50 @@ while good:
         for handLms in results.multi_hand_landmarks:
             mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
             
-            for id, point in enumerate(handLms.landmark):
-                width, height, color = img.shape
-                width, height = float(point.x * height), float(point.y * width)
+        for id, point in enumerate(handLms.landmark):
+            width, height, color = img.shape
+            width, height = float(point.x * height), float(point.y * width)
 
-                points[id][0] = width
-                points[id][1] = height
+            points[id][0] = width
+            points[id][1] = height
 
-                if id == 8 or id == 12 or id == 16 or id == 20: # check for finger raised points
-                    #Is your finger raised with the ID number?
-                    if distance(points[0], points[id]) <= distance(points[0], points[id - 3]):
-                        points[id][2] = 0 # no, the finger is not raised
-                    
-                    elif distance(points[0], points[id]) > distance(points[0], points[id - 3]): 
-                        points[id][2] = 1 # yes, thumbs up
-                elif id == 4:
-                    if distance(points[4], points[5]) > distance(points[5], points[13]):
-                        points[4][2] = 1
-                    else:
-                        points[4][2] = 0
+            if id == 8 or id == 12 or id == 16 or id == 20: # check for finger raised points
+                #Is your finger raised with the ID number?
+                if distance(points[0], points[id]) <= distance(points[0], points[id - 3]):
+                    points[id][2] = 0 # no, the finger is not raised
+                
+                elif distance(points[0], points[id]) > distance(points[0], points[id - 3]): 
+                    points[id][2] = 1 # yes, thumbs up
+        
+        if distance(points[4], points[5]) > distance(points[5], points[13]):
+            points[4][2] = 1
+        else:
+            points[4][2] = 0
 
-            #print(results.multi_handedness[0].classification[0].label, results.multi_handedness[0].classification[0].label)
-            #if distance(points[4], points[5]) < distance(points[6], points[8]):
-            #    pyautogui.click()
-            #print(f'{points[4][2]} {points[8][2]} {points[12][2]} {points[16][2]} {points[20][2]}')
+        #print(results.multi_handedness[0].classification[0].label, results.multi_handedness[0].classification[0].label)
+        #if distance(points[4], points[5]) < distance(points[6], points[8]):
+        #    pyautogui.click()
+        #print(f'{points[4][2]} {points[8][2]} {points[12][2]} {points[16][2]} {points[20][2]}')
 
-            speed = 10
-            if points[4][2] != 1 and points[8][2] == 1 and points[12][2] == 0 and points[16][2] == 0 and points[20][2] == 0:
-                print('up!')
-                pyautogui.move(0, -speed)
-            elif points[4][2] != 1 and points[8][2] == 0 and points[12][2] == 0 and points[16][2] == 0 and points[20][2] == 1:
-                print('to the right!')
-                pyautogui.move(-speed, 0)
-            elif distance(points[4], points[5]) > distance(points[5], points[13]) and points[8][2] == points[12][2] == points[16][2] == points[20][2] == 0:
-                print('to the left!')
-                pyautogui.move(speed, 0)
-            #print(points[4][2], distance(points[4], points[5]), distance(points[5], points[13]))
+        speed = 15
+        if points[4][2] != 1 and points[8][2] == 1 and points[12][2] == 0 and points[16][2] == 0 and points[20][2] == 0:
+            print('up!')
+            pyautogui.move(0, -speed)   
+        elif points[4][2] != 1 and points[8][2] == 1 and points[12][2] == 1 and points[16][2] == 0 and points[20][2] == 0:
+            print('down!')
+            pyautogui.move(0, speed)
+        elif points[4][2] != 1 and points[8][2] == 0 and points[12][2] == 0 and points[16][2] == 0 and points[20][2] == 1:
+            print('to the right!')
+            pyautogui.move(-speed, 0)
+        elif points[4][2] == 1 and points[8][2] == points[12][2] == points[16][2] == points[20][2] == 0:
+            print('to the left!')
+            pyautogui.move(speed, 0)
+        elif points[4][2] != 1 and points[8][2] == 1 and points[12][2] == 0 and points[16][2] == 0 and points[20][2] == 1:
+            print('mouse click!')
+            pyautogui.click()
+        
+        #print(points[4][2], distance(points[4], points[5]), distance(points[5], points[13]))
+        
 
 
 
