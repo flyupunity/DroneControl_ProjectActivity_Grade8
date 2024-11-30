@@ -51,9 +51,8 @@ This is my project "Drone Control" for "Project Activity" for the 8th grade crea
   python.exe -m pip install --upgrade pip
   ```
   
-  #### Creating a file with a list of installed libraries in the file "requirements.txt"
+  #### Write project dependencies in "requirements.txt"
   ```cmd
-  pip install requests
   pip freeze > requirements.txt
   pip install -r requirements.txt
   ```
