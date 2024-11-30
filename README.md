@@ -76,6 +76,8 @@ main_handGestureDetection.py
 > After importing the script libraries, a window will open showing the processed image from the camera. Show ***one*** hand to the camera and be surprised that all 21 landmarks are displayed.
 > After that, try making hand gestures from the table below to understand what each gesture does
 
+<p align="center"><img src=".\images\hand_landmarks_002.png" height="200em"/></p>
+
 ### Hand gestures
 > [!IMPORTANT]
 > ***Here I would like to remind you that the project is currently being developed and the meaning of gestures will soon change.***
