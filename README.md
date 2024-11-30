@@ -3,6 +3,10 @@
 Drone control for "Project activity" for grade 8. By reading hand gestures and recognizing the head/body
 <br>
 
+> [!TIP]
+> - To edit scripts, you can use the [web version of Visual Studio Code](https://vscode.dev/)
+> - To run scripts you can use [Colab Colaboratory](https://colab.research.google.com/)
+
 > [!IMPORTANT]
 > #### Requirements
 >
