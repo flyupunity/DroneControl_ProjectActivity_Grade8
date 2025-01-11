@@ -84,11 +84,11 @@ main_handGestureDetection.py
 
 | Number |                Hand gesture image                      | Action these hand gestures |
 |-------:|--------------------------------------------------------|----------------------------|
-|       1| <p align="center"><img src=".\HandGestureDetection\handGesture_1st_up.jpg" height="50em"/></p>| computer mouse cursor moves `up`|
-|       2| <p align="center"><img src=".\HandGestureDetection\handGesture_2nd_right.jpg" height="50em"/></p>|  computer mouse cursor moves to the `right`|
-|       3| <p align="center"><img src=".\HandGestureDetection\handGesture_3rd_left.jpg" height="50em"/></p>|  computer mouse cursor moves to the `left`
-|       4| <p align="center"><img src=".\HandGestureDetection\handGesture_4th_down.jpg" height="50em"/></p>|  computer mouse cursor moves `down`|
-|       5| <p align="center"><img src=".\HandGestureDetection\handGesture_5th_specialAction.jpg" height="50em"/></p>|  this is a special action and at the moment if you make this gesture then the computer mouse will `press the left button`|
+|       1| <p align="center"><img src=".\Images\handGesture_1st_up.jpg" height="50em"/></p>| computer mouse cursor moves `up`|
+|       2| <p align="center"><img src=".\Images\handGesture_2nd_right.jpg" height="50em"/></p>|  computer mouse cursor moves to the `right`|
+|       3| <p align="center"><img src=".\Images\handGesture_3rd_left.jpg" height="50em"/></p>|  computer mouse cursor moves to the `left`
+|       4| <p align="center"><img src=".\Images\handGesture_4th_down.jpg" height="50em"/></p>|  computer mouse cursor moves `down`|
+|       5| <p align="center"><img src=".\Images\handGesture_5th_specialAction.jpg" height="50em"/></p>|  this is a special action and at the moment if you make this gesture then the computer mouse will `press the left button`|
 
 ## ***Stopping*** the script
 
