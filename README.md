@@ -15,12 +15,19 @@ This is my project "Drone Control" for "Project Activity" for the 8th grade crea
 > - [`Python`](https://www.python.org/downloads/) (I use version "3.10" and "3.12" for work)
 > - [Libraries for Python (`mediapipe`, `pyautogui`, `opencv`)](#installation-on-windows-using-cmd)
 
+<br>
+
+>[!WARNING]
+> ***The documentation is currently out of date! I will fix it soon, thanks for waiting***
+
 <br><br>
 
 
 
 
 # Getting started
+
+
 
 >[!WARNING]
 >### Рroject in development
@@ -84,11 +91,11 @@ main_handGestureDetection.py
 
 | Number |                Hand gesture image                      | Action these hand gestures |
 |-------:|--------------------------------------------------------|----------------------------|
-|       1| <p align="center"><img src=".\Images\handGesture_1st_up.jpg" height="50em"/></p>| computer mouse cursor moves `up`|
-|       2| <p align="center"><img src=".\Images\handGesture_2nd_right.jpg" height="50em"/></p>|  computer mouse cursor moves to the `right`|
-|       3| <p align="center"><img src=".\Images\handGesture_3rd_left.jpg" height="50em"/></p>|  computer mouse cursor moves to the `left`
-|       4| <p align="center"><img src=".\Images\handGesture_4th_down.jpg" height="50em"/></p>|  computer mouse cursor moves `down`|
-|       5| <p align="center"><img src=".\Images\handGesture_5th_specialAction.jpg" height="50em"/></p>|  this is a special action and at the moment if you make this gesture then the computer mouse will `press the left button`|
+|       1| <p align="center"><img src=".\images\handGesture_1st_up.jpg" height="50em"/></p>| computer mouse cursor moves `up`|
+|       2| <p align="center"><img src=".\images\handGesture_2nd_right.jpg" height="50em"/></p>|  computer mouse cursor moves to the `right`|
+|       3| <p align="center"><img src=".\images\handGesture_3rd_left.jpg" height="50em"/></p>|  computer mouse cursor moves to the `left`
+|       4| <p align="center"><img src=".\images\handGesture_4th_down.jpg" height="50em"/></p>|  computer mouse cursor moves `down`|
+|       5| <p align="center"><img src=".\images\handGesture_5th_specialAction.jpg" height="50em"/></p>|  this is a special action and at the moment if you make this gesture then the computer mouse will `press the left button`|
 
 ## ***Stopping*** the script
 
