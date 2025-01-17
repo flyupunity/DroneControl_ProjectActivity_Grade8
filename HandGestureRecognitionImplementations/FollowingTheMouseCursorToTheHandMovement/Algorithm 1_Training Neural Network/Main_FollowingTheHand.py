@@ -30,6 +30,7 @@ def main():
         points[i][1] = float(1)
         points[i][2] = int(-1)
     '''
+    clickVer = 0
     good, img = camera.read() # reading a frame from a camera to check access to the camera
     if good == False: 
         print('Please, check the camera, maybe another app is using the camera')
@@ -40,8 +41,8 @@ def main():
         x_ = []
         y_ = []
         
-        good, img = camera.read() # reading a frame from a camera
-        img = cv2.flip(img, 1) # mirroring a frame vertically
+        good, img = camera.read()   # reading a frame from a camera
+        img = cv2.flip(img, 1)      # mirroring a frame vertically
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) # converting a frame from a camera
         
         camera_height = img.shape[0]
@@ -53,9 +54,9 @@ def main():
         if results.multi_hand_landmarks:
             for handLms in results.multi_hand_landmarks:
                 mpDraw.draw_landmarks(
-                    img,  # image to draw
-                    handLms,  # model output
-                    mpHands.HAND_CONNECTIONS,  # hand connections
+                    img,                        # image to draw
+                    handLms,                    # model output
+                    mpHands.HAND_CONNECTIONS,   # hand connections
                     mpDrawStyles.get_default_hand_landmarks_style(),
                     mpDrawStyles.get_default_hand_connections_style())
 
@@ -102,32 +103,49 @@ def main():
             x2 = int(max(x_) * camera_width) - 10
             y2 = int(max(y_) * camera_height) - 10
 
-            prediction = model.predict([np.asarray(data_aux)])
-            predicted_character = labels_dict[int(prediction[0])]
+            
 
-            cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 0), 4)
-            cv2.putText(img, predicted_character, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 0, 0), 3,
-                        cv2.LINE_AA)
 
-            if int(prediction[0]) == 0:
-                
-                width, height, color = img.shape
-                width, height = float(handLms.landmark[8].x * height), float(handLms.landmark[8].y * width)
-                
-                cursor_width = float((screen_width / camera_width) * width)
-                cursor_height = float((screen_height / camera_height) * height)
+            try:
+                prediction = model.predict([np.asarray(data_aux)])
+                predicted_character = labels_dict[int(prediction[0])]
 
-                if cursor_width < 0: cursor_width = 0
-                if cursor_width > screen_width: cursor_width = screen_width
-                            
-                if cursor_height < 0: cursor_height = 0
-                if cursor_height > screen_height: cursor_height = screen_height
-                
-                pyautogui.moveTo(cursor_width, cursor_height)
-                
-            elif int(prediction[0]) == 1:
-                pyautogui.click()
+                cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 4)
+                cv2.putText(img, predicted_character, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 255, 0), 3,
+                            cv2.LINE_AA)
 
+                
+                if int(prediction[0]) == 0:
+                    
+                    width, height, color = img.shape
+                    width, height = float(handLms.landmark[8].x * height), float(handLms.landmark[8].y * width)
+                     
+                    cursor_width = float((screen_width / camera_width) * width)
+                    cursor_height = float((screen_height / camera_height) * height)
+
+                    if cursor_width < 0: cursor_width = 0
+                    if cursor_width > screen_width: cursor_width = screen_width
+                                
+                    if cursor_height < 0: cursor_height = 0
+                    if cursor_height > screen_height: cursor_height = screen_height
+                    
+                    pyautogui.moveTo(cursor_width, cursor_height)
+                    
+                elif int(prediction[0]) == 1:
+                    clickVer += 1
+                    if clickVer >= 10:
+                        pyautogui.click()
+                        clickVer = 0
+                        
+                if int(prediction[0]) != 1:
+                    clickVer = 0
+                    
+            except Exception as e:
+               
+                if str(e) == 'X has 84 features, but RandomForestClassifier is expecting 42 features as input.':
+                    print(f"Error: Keep your extra hand out of the camera's reach:\n{e}\n")
+                else:
+                    print(f'Error: {e}\n')
            
                 
         cv2.imshow('processed image from camera', img)
@@ -141,13 +159,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
 
-
-
+#pyautogui.click()
+#pyautogui.mouseUp()
+#pyautogui.mouseDown()
+#pyautogui.drag(0, -distance, duration=0.5, button='left')
+    
 #print(results.multi_handedness[0].classification[0].label, results.multi_handedness[0].classification[0].label)
 #if distance(points[4], points[5]) < distance(points[6], points[8]):
-#    pyautogui.click()
 #print(f'{points[4][2]} {points[8][2]} {points[12][2]} {points[16][2]} {points[20][2]}')
+
 
 
 
