@@ -1,5 +1,6 @@
 import pygame
 import sys
+import appleClass
 
 pygame.init()
 
@@ -19,7 +20,8 @@ RED = (255, 0, 0)
 font = pygame.font.SysFont(None, 55)
 
 
-
+appleFromClass = appleClass.Apple(((1, 1), 1, 1))
+all_sprites = pygame.sprite.Group(appleFromClass)
 
 running = True
 while running:
@@ -29,13 +31,20 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if exit_button.collidepoint(event.pos):
                 #running = False
-                import startScene
+                #import startScene
+                pygame.quit()
+                sys.exit()
 
 
     screen.fill(WHITE)
 
+
+    all_sprites.update()
+    all_sprites.draw(screen)
+
+
     # Background
-    gameBackground = pygame.image.load('UI\\Background1.1_0.png').convert_alpha()
+    gameBackground = pygame.image.load('UI\\Background1.2_0.png').convert_alpha()
     gameBackground = pygame.transform.scale(gameBackground, (width, height))
     screen.blit(gameBackground, (0, 0))
 
@@ -47,8 +56,8 @@ while running:
     
 
     # Apple
-    apple = pygame.image.load('UI\\apple0_0.png').convert_alpha()
-    apple = pygame.transform.scale(apple, (apple.get_width()/6, apple.get_height()/6))
+    apple = pygame.image.load('UI\\apple0.1_0.png').convert_alpha()
+    apple = pygame.transform.scale(apple, (apple.get_width()/2, apple.get_height()/2))
     mouse_x, mouse_y = pygame.mouse.get_pos()
     screen.blit(apple, (mouse_x - int(apple.get_height()/2), mouse_y - int(apple.get_width()/2)))
 
@@ -61,11 +70,13 @@ while running:
 
 
     # Exit button
-    exit_button = pygame.Rect(50, 25, 400, 50)
+    #exit_button = pygame.Rect(50, 25, 400, 50)
+    exit_button = pygame.Rect(50, 25, 200, 50)
     pygame.draw.rect(screen, RED, exit_button, 0, 10)
 
     # Exit text
-    exit_text = font.render("Back to main menu", True, WHITE)
+    #exit_text = font.render("Back to main menu", True, WHITE)
+    exit_text = font.render("Exit", True, WHITE)
     exit_text_rect = exit_text.get_rect()
     
     exit_text_rect.center = (exit_button.x + exit_button.w // 2, exit_button.y + exit_button.h // 2)
@@ -79,5 +90,3 @@ while running:
     pygame.display.update()
     #pygame.display.flip()
     
-#pygame.quit()
-#sys.exit()
