@@ -46,7 +46,7 @@ while running:
     # Background
     gameBackground = pygame.image.load('UI\\Background1.2_0.png').convert_alpha()
     gameBackground = pygame.transform.scale(gameBackground, (width, height))
-    screen.blit(gameBackground, (0, 0))
+    screen.blit(gameBackground, (200, 200))
 
 
     # Table

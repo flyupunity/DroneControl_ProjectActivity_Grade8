@@ -1,4 +1,57 @@
 import pygame
+import sys
+import appleClass
+
+pygame.init()
+
+width, height = pygame.display.set_mode().get_size()
+screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+
+font = pygame.font.SysFont(None, 55)
+
+appleFromClass = appleClass.Apple(0, 0)
+
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if exit_button.collidepoint(event.pos):
+                pygame.quit()
+                sys.exit()
+            elif appleFromClass.image_rect.collidepoint(event.pos):
+                appleFromClass.CheckingTheDragging(True)
+        elif event.type == pygame.MOUSEBUTTONUP:
+            appleFromClass.CheckingTheDragging(False)
+
+    screen.fill((255, 255, 255))
+    appleFromClass.draw(screen)
+
+
+
+
+    # Exit button
+    exit_button = pygame.Rect(50, 25, 200, 50)
+    pygame.draw.rect(screen, (255, 0, 0), exit_button, 0, 10)
+
+    # Exit text
+    exit_text = font.render("Exit", True, (255, 255, 255))
+    exit_text_rect = exit_text.get_rect()
+    
+    exit_text_rect.center = (exit_button.x + exit_button.w // 2, exit_button.y + exit_button.h // 2)
+    screen.blit(exit_text, exit_text_rect.topleft)
+
+
+    #Display update
+    pygame.display.update()
+    
+
+
+
+
+'''import pygame
 import math
 import os
 import sys
@@ -63,6 +116,11 @@ def main():
 
 if __name__ == '__main__':
     main()
+'''
+
+
+
+
 
 '''import pygame
 
