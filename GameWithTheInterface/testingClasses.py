@@ -1,53 +1,61 @@
 import pygame
 import sys
 import appleClass
-
-pygame.init()
-
-width, height = pygame.display.set_mode().get_size()
-screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-
-font = pygame.font.SysFont(None, 55)
-
-appleFromClass = appleClass.Apple(0, 0)
-
-
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            if exit_button.collidepoint(event.pos):
-                pygame.quit()
-                sys.exit()
-            elif appleFromClass.image_rect.collidepoint(event.pos):
-                appleFromClass.CheckingTheDragging(True)
-        elif event.type == pygame.MOUSEBUTTONUP:
-            appleFromClass.CheckingTheDragging(False)
-
-    screen.fill((255, 255, 255))
-    appleFromClass.draw(screen)
+import random
 
 
 
+def main():
+    pygame.init()
 
-    # Exit button
-    exit_button = pygame.Rect(50, 25, 200, 50)
-    pygame.draw.rect(screen, (255, 0, 0), exit_button, 0, 10)
+    width, height = pygame.display.set_mode().get_size()
+    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
-    # Exit text
-    exit_text = font.render("Exit", True, (255, 255, 255))
-    exit_text_rect = exit_text.get_rect()
+    font = pygame.font.SysFont(None, 55)
+    applesFromClass = [appleClass.Apple(random.randrange(1800, 1900), random.randrange(800, 850)) for _ in range(5)]
+
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if exit_button.collidepoint(event.pos):
+                    pygame.quit()
+                    sys.exit()
+                elif event.button == 1:
+                    for apple in applesFromClass:
+                        if apple.image_rect.collidepoint(event.pos):
+                            apple.CheckingTheDragging(True)
+            elif event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 1:
+                    for apple in applesFromClass:
+                        apple.CheckingTheDragging(False)
+
+        screen.fill((255, 255, 255))
+        for apple in applesFromClass:
+            apple.draw(screen)
+
+
+
+        # Exit button
+        exit_button = pygame.Rect(50, 25, 200, 50)
+        pygame.draw.rect(screen, (255, 0, 0), exit_button, 0, 10)
+
+        # Exit text
+        exit_text = font.render("Exit", True, (255, 255, 255))
+        exit_text_rect = exit_text.get_rect()
+        
+        exit_text_rect.center = (exit_button.x + exit_button.w // 2, exit_button.y + exit_button.h // 2)
+        screen.blit(exit_text, exit_text_rect.topleft)
+
+
+        #Display update
+        pygame.display.update()
     
-    exit_text_rect.center = (exit_button.x + exit_button.w // 2, exit_button.y + exit_button.h // 2)
-    screen.blit(exit_text, exit_text_rect.topleft)
-
-
-    #Display update
-    pygame.display.update()
-    
-
+if __name__ == '__main__':
+    main()
 
 
 
