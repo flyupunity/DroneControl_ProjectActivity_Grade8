@@ -1,11 +1,13 @@
 import pygame
 import sys
 import appleClass
+import followingTheHand
 import random
 
 
 def main():
     pygame.init()
+    
 
     #window_size = (800, 600)
     width, height = pygame.display.set_mode().get_size()
@@ -70,7 +72,7 @@ def main():
             apple.draw(screen)
         #all_sprites.update()
         #all_sprites.draw(screen)
-        
+
 
         # Basket
         basket = pygame.image.load('UI\\basket0_0.png').convert_alpha()
