@@ -81,9 +81,11 @@ def main():
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if exit_button.collidepoint(event.pos):
+                    screen.fill(WHITE)
                     pygame.quit()
                     sys.exit()
                 elif start_button.collidepoint(event.pos):
+                    screen.fill(WHITE)
                     running = False
 
 
@@ -229,15 +231,20 @@ def main():
                     #import startScene
                     pygame.quit()
                     sys.exit()
+                '''
                 elif event.button == 1:
                     for apple in applesFromClass:
                         if apple.image_rect.collidepoint(event.pos):
                             apple.CheckingTheDragging(True)
                             break
+                '''
+            '''
             elif event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:
+                
                     for apple in applesFromClass:
                         apple.CheckingTheDragging(False)
+            '''
 
         screen.fill(WHITE)
 
@@ -346,25 +353,23 @@ def main():
                                 
                     if cursor_height < 0: cursor_height = 0
                     if cursor_height > screen_height: cursor_height = screen_height
-                    
 
                     position = (cursor_width, cursor_height)
 
                     if int(prediction[0]) == 0:
-                        pyautogui.moveTo(cursor_width, cursor_height)
-                    if int(prediction[0]) == 1:
-                        pyautogui.mouseDown()
-                        pyautogui.moveTo(cursor_width, cursor_height)
-                        
-                        
-                        #pyautogui.dragTo(cursor_width, cursor_height, button='left')
-                        #clickVer += 1
-                        #if clickVer >= 10:
-                        #    pyautogui.click()
-                        #    clickVer = 0
-                        
-                if int(prediction[0]) != 1:
-                    clickVer = 0
+                        pyautogui.moveTo(position)
+                    else:                                           #if int(prediction[0]) == 1:
+                        pyautogui.moveTo(position)
+                        for apple in applesFromClass:
+                            if apple.image_rect.collidepoint(position):
+                                apple.CheckingTheDragging(True)
+                                clickVer = 5
+                                break
+                else:
+                    clickVer -= 1
+                    if clickVer <= 0:
+                        for apple in applesFromClass:
+                            apple.CheckingTheDragging(False)
                     
             except Exception as e:
                 
