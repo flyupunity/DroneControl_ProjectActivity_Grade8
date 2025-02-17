@@ -229,6 +229,7 @@ def main():
                 if exit_button.collidepoint(event.pos):
                     #running = False
                     #import startScene
+                    screen.fill(WHITE)
                     pygame.quit()
                     sys.exit()
                 '''
@@ -343,7 +344,7 @@ def main():
                 if int(prediction[0]) == 0 or int(prediction[0]) == 1:
                     
                     width_hand, height_hand, color = img.shape
-                    width_hand, height_hand = float(handLms.landmark[8].x * height), float(handLms.landmark[8].y * width_hand)
+                    width_hand, height_hand = float(handLms.landmark[0].x * height), float(handLms.landmark[0].y * width_hand)
                         
                     cursor_width = float((screen_width / camera_width) * width_hand)
                     cursor_height = float((screen_height / camera_height) * height_hand)
@@ -363,9 +364,9 @@ def main():
                         for apple in applesFromClass:
                             if apple.image_rect.collidepoint(position):
                                 apple.CheckingTheDragging(True)
-                                clickVer = 5
+                                clickVer = 0
                                 break
-                else:
+                if int(prediction[0]) != 1:
                     clickVer -= 1
                     if clickVer <= 0:
                         for apple in applesFromClass:
