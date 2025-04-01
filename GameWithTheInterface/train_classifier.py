@@ -24,13 +24,11 @@ y_predict = model.predict(x_test)                                           # Us
 score = accuracy_score(y_predict, y_test)                                   # Calculate the accuracy of the model by comparing predictions with actual labels
 print('{}% of samples were classified correctly !'.format(score * 100))     # Print the accuracy score as a percentage
 
-f = open('model.p', 'wb')                                                   # Open a binary file to write the trained model
-pickle.dump({'model': model}, f)                                            # Save the trained model into the file using pickle
-f.close()                                                                   # Close the file to complete the writing process
-
-
-
-
+#f = open('model.p', 'wb')                                                  # Open a binary file to write the trained model
+#pickle.dump({'model': model}, f)                                           # Save the trained model into the file using pickle
+#pickle.dump(model, open('model.p', 'wb'))
+pickle.dump({'model': model}, open('model.p', 'wb'))
+#f.close()                                                                   # Close the file to complete the writing process
 
 
 

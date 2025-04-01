@@ -8,6 +8,7 @@ import sys
 #import appleClass
 #import followingTheHand
 import random
+from sklearn.ensemble import RandomForestClassifier
 
 class Apple(object):
     def __init__(self, startPos_x, startPos_y):
@@ -195,7 +196,10 @@ def main():
     mpDraw = mp.solutions.drawing_utils
     mpDrawStyles = mp.solutions.drawing_styles
 
-    hands = mpHands.Hands(static_image_mode=True, min_detection_confidence=0.3)
+    hands = mpHands.Hands(
+        static_image_mode=True,
+        min_detection_confidence=0.3,
+    )
     labels_dict = {0: 'move', 1: 'click', 2: 'empty'}
     
     points = [[float(0) for i in range(3)] for i in range(21)]
