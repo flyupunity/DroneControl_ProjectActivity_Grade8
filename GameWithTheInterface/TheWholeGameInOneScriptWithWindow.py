@@ -312,7 +312,15 @@ def main():
         y_ = []
         
         good, img = camera.read()   # reading a frame from a camera
-        img = cv2.flip(img, 1)      # mirroring a frame vertically
+        #r = 0.75
+        #center_h = img.shape[0]//2
+        #center_w = img.shape[1]//2
+
+        #print(f'{img.shape[0]} {img.shape[1]} -> {img[int(center_h*r):int(center_h+center_w*r), int(center_w*r):int(center_w+center_w*r)].shape[0]} {img[int(center_h*r):int(center_h+center_w*r), int(center_w*r):int(center_w+center_w*r)].shape[1]}')
+        #img = img[int(center_h*r):int(center_h+center_w*r), int(center_w*r):int(center_w+center_w*r)]
+
+
+        img = cv2.flip(img, 1)                        # mirroring a frame vertically
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) # converting a frame from a camera
         
         camera_height = img.shape[0]
@@ -360,10 +368,19 @@ def main():
                 print(prediction[0])
                 
                 if int(prediction[0]) == 0 or int(prediction[0]) == 1:
+                    ### input value
+                    landmark_id = 0 # the identifier of the landmark (see the MediaPipe landmark display image) on the hand that the mouse cursor will follow
+                    factor_h = 0.75 # proportion of the camera's horizontal range processed
+                    factor_w = 0.75 # proportion of the camera's vertical range processed
+                    ###
                     
+                    range_h = ((1-factor_h)*camera_height)
+                    range_w = 
+
                     width_hand, height_hand, color = img.shape
-                    width_hand, height_hand = float(handLms.landmark[0].x * height), float(handLms.landmark[0].y * width_hand)
+                    width_hand, height_hand = float(handLms.landmark[landmark_id].x * height), float(handLms.landmark[landmark_id].y * width_hand)
                         
+                    
                     cursor_width = float((screen_width / camera_width) * width_hand)
                     cursor_height = float((screen_height / camera_height) * height_hand)
 
