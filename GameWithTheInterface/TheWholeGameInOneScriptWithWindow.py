@@ -205,6 +205,7 @@ def main():
     points = [[float(0) for i in range(3)] for i in range(21)]
 
     clickVer = 0
+    exitVer = 0
     good, img = camera.read() # reading a frame from a camera to check access to the camera
     if good == False: 
         print('Please, check the camera, maybe another app is using the camera')
@@ -359,6 +360,17 @@ def main():
 
                 print(prediction[0])
                 
+                if int(prediction[0]) == 2:
+                    exitVer -= 1
+                    if exitVer <= 0:
+                        screen.fill(WHITE)
+                        camera.release()
+                        cv2.destroyAllWindows()
+                        pygame.quit()
+                        sys.exit()
+                else:
+                    exitVer = 30
+
                 if int(prediction[0]) == 0 or int(prediction[0]) == 1:
                     
                     width_hand, height_hand, color = img.shape
