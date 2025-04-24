@@ -17,7 +17,7 @@ This is my project "Drone Control" for "Project Activity" for the 8th grade crea
 
 <br>
 
->[!WARNING]
+>[!CAUTION]
 > ***The documentation is currently out of date! I will fix it soon, thanks for waiting***
 
 <br><br>
