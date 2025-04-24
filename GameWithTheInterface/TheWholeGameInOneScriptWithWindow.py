@@ -200,7 +200,7 @@ def main():
         static_image_mode=True,
         min_detection_confidence=0.3,
     )
-    labels_dict = {0: 'move', 1: 'click', 2: 'empty'}
+    labels_dict = {0: 'move', 1: 'click', 2: 'start/exit', 3: 'empty'}
     
     points = [[float(0) for i in range(3)] for i in range(21)]
 
