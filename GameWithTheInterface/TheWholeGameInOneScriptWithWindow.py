@@ -184,7 +184,7 @@ def main():
     model_dict = pickle.load(open('./model.p', 'rb'))
     model = model_dict['model']
 
-    camera = cv2.VideoCapture(0)
+    camera = cv2.VideoCapture(1)
     screen_width, screen_height = pyautogui.size()
     pyautogui.FAILSAFE = False
 

@@ -1,3 +1,3 @@
 E:
-cd "E:\Repository-HAND\GameWithTheInterface\venv"
+cd "E:\Repository-HAND\GameWithTheInterface"
 .\venv\Scripts\activate
